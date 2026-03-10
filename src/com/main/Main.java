@@ -1,20 +1,18 @@
 package com.main;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.bogie.Bogie;
+import com.bogie.CargoBogie;
 
 /*
- * UC11: Validate Train ID & Cargo Codes (Regex)
- * 		 Used TrainIDPattern and CargoIDPattern
- * 		 Taking input and matches with pattern
- * 		 Printing validation Result
+ * UC12: Safety Compliance Check for Goods Bogies
+ * 		 Used Stream allMatch to check Validation
+ * 		 Validation checking train is same or not
+ * 		 Cylindrical only petroleum condition is used
  * 		 
  * @author Dilpreet
- * @version 11.0
+ * @version 12.0
  */
 
 public class Main {
@@ -25,30 +23,32 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		// Define regex patterns
-        String trainPattern = "TRN-\\d{4}";
-        String cargoPattern = "PET-[A-Z]{2}";
-
-        // Compile patterns
-        Pattern trainIdPattern = Pattern.compile(trainPattern);
-        Pattern cargoCodePattern = Pattern.compile(cargoPattern);
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter Train ID (format TRN-1234): ");
-        String trainInput = sc.nextLine();
-        System.out.print("Enter Cargo Code (format PET-AB): ");
-        String cargoInput = sc.nextLine();
-        System.out.println();
-        
-        Matcher trainMatcher = trainIdPattern.matcher(trainInput);
-        Matcher cargoMatcher = cargoCodePattern.matcher(cargoInput);
-        
-        System.out.println("Validation Result: ");
-        System.out.println("Valid Train ID: " + trainMatcher.matches());
-        System.out.println("Valid Train ID: " + cargoMatcher.matches());
-
+		List<CargoBogie> cargoBogie = new ArrayList<>();
+		
+		cargoBogie.add(new CargoBogie("Cylindrical","Petroleum"));
+		cargoBogie.add(new CargoBogie("Open","Coal"));
+		cargoBogie.add(new CargoBogie("Box","Grain"));
+		cargoBogie.add(new CargoBogie("Cylindrical","Coal"));
+		
+		System.out.println("Goods Bogies in Train: ");
+		for(CargoBogie b : cargoBogie) {
+			System.out.println(b.type + " -> " + b.cargo);
+		}
+		System.out.println();
+		
+		boolean isSafe = cargoBogie.stream().allMatch(bogie -> validateBogie(bogie));
+		
+		System.out.println("Safety Compliance Status: " + isSafe);
+		
+		if(isSafe) System.out.println("Train formation is SAFE");
+		else System.out.println("Train formation is NOT SAFE");
 
 	}
+	private static boolean validateBogie(CargoBogie b) {
+        if ("cylindrical".equalsIgnoreCase(b.type)) {
+            return "Petroleum".equalsIgnoreCase(b.cargo);
+        }
+        return true;
+    }
 
 }
