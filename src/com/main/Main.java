@@ -2,6 +2,8 @@ package com.main;
 
 import java.util.*;
 
+import com.bogie.Bogie;
+
 /*
  * UC6: Map Bogie to Capacity
  * 		Used HashMap to store name and capacity
@@ -19,17 +21,25 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		Map<String,Integer> capacityMap = new HashMap<>();
+		List<Bogie> bogies = new ArrayList<>();
 		
-		capacityMap.put("First Class", 24);
-		capacityMap.put("Cargo", 120);
-		capacityMap.put("Sleeper", 72);
-		capacityMap.put("AC Chair", 56);
+		bogies.add(new Bogie("Sleeper",72));
+		bogies.add(new Bogie("AC Chair",56));
+		bogies.add(new Bogie("First Class",24));
+		bogies.add(new Bogie("General",90));
 		
-		System.out.println("Bogie Capacity Details:");
+		System.out.println("Before sorting:");
 		
-		for(String key : capacityMap.keySet()) {
-			System.out.println(key + " -> " + capacityMap.get(key));
+		for(Bogie b : bogies) {
+			System.out.println(b.name + " -> " + b.capacity);
+		}
+		
+		Collections.sort(bogies, Comparator.comparingInt(bogie -> bogie.capacity));
+		System.out.println();
+		System.out.println("After sorting:");
+
+		for(Bogie b : bogies) {
+			System.out.println(b.name + " -> " + b.capacity);
 		}
 		
 
