@@ -44,7 +44,7 @@ public class Main {
 		else System.out.println("Train formation is NOT SAFE");
 
 	}
-	private static boolean validateBogie(CargoBogie b) {
+	public static boolean validateBogie(CargoBogie b) {
         if ("cylindrical".equalsIgnoreCase(b.type)) {
             return "Petroleum".equalsIgnoreCase(b.cargo);
         }
