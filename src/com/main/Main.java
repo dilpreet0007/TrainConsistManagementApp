@@ -1,17 +1,17 @@
 package com.main;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.bogie.Bogie;
 
 /*
- * UC7: Sort Bogies by Capacity (Comparator)
- * 		Stored in class
- * 		sorted using comparator
- * 		sorted on basis of capacity
+ * UC8: Filter Passenger Bogies Using Streams
+ * 		Stored Bogies in class
+ * 		Filter bogies with capacity > 60
  * 
  * @author Dilpreet
- * @version 7.0
+ * @version 8.0
  */
 
 public class Main {
@@ -29,16 +29,16 @@ public class Main {
 		bogies.add(new Bogie("First Class",24));
 		bogies.add(new Bogie("General",90));
 		
-		System.out.println("Before sorting:");
+		System.out.println("All Bogies:");
 		
 		for(Bogie b : bogies) {
 			System.out.println(b.name + " -> " + b.capacity);
 		}
 		
-		Collections.sort(bogies, Comparator.comparingInt(bogie -> bogie.capacity));
+		bogies = bogies.stream().filter(bogie -> bogie.capacity > 60).collect(Collectors.toList());
 		
 		System.out.println();
-		System.out.println("After sorting:");
+		System.out.println("Filtered Bogies > 60:");
 
 		for(Bogie b : bogies) {
 			System.out.println(b.name + " -> " + b.capacity);
