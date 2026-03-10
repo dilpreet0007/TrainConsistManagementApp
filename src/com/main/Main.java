@@ -3,7 +3,7 @@ package com.main;
 import java.util.*;
 
 /*
- * UC1: Add Passenger Bogies to Train (ArrayList Operations)
+ * UC2: Add Passenger Bogies to Train (ArrayList Operations)
  * 		Bogies added
  * 		Bogies removed
  * 		Its current consist is printed
