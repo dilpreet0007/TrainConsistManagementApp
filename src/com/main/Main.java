@@ -3,13 +3,13 @@ package com.main;
 import java.util.*;
 
 /*
- * UC3: Track Unique Bogie IDs (Set – HashSet)
- * 		IDs added
- * 		Tried to add duplicates
- * 		Its current consist is printed
+ * UC4: Maintain Ordered Bogie IDs
+ * 		Used LinkedList to maintain order
+ * 		add in particular position
+ * 		used removeLast and removeFirst
  * 
  * @author Dilpreet
- * @version 3.0
+ * @version 4.0
  */
 
 public class Main {
@@ -18,20 +18,27 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println(" Train Consist Management App ");
 		System.out.println("==============================");
+		System.out.println();
 		
-		Set<String> trainConsist = new HashSet<>();
+		List<String> trainConsist = new LinkedList<>();
 		
-		//Bogie IDs added in set
-		trainConsist.add("BG101");
-		trainConsist.add("BG102");
-		trainConsist.add("BG103");
-		trainConsist.add("BG104");
 		
-		//try to add duplicates
-		trainConsist.add("BG101");
-		trainConsist.add("BG102");
+		trainConsist.add("Engine");
+		trainConsist.add("Sleeper");
+		trainConsist.add("AC");
+		trainConsist.add("Cargo");
+		trainConsist.add("Gaurd");
 		
-		System.out.println("Passenger Bogies: " + trainConsist);
+		System.out.println("Initial Train Consist:\n" + trainConsist + "\n");
+		
+		trainConsist.add(2, "Pantry Car");
+		System.out.println("Pantry Car is added at second position:\n" + trainConsist +"\n");
+		
+		trainConsist.removeFirst();
+		trainConsist.removeLast();
+		System.out.println("After Removing Fist And Last Bogie:\n" + trainConsist + "\n");
+		
+		
 
 	}
 
