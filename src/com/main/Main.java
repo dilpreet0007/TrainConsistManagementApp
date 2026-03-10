@@ -3,13 +3,12 @@ package com.main;
 import java.util.*;
 
 /*
- * UC5: Preserve Insertion Order of Bogies
- * 		Used LinkedHashSet to maintain order
- * 		Avoid Duplicates
+ * UC6: Map Bogie to Capacity
+ * 		Used HashMap to store name and capacity
  * 		Checking Consist
  * 
  * @author Dilpreet
- * @version 5.0
+ * @version 6.0
  */
 
 public class Main {
@@ -20,17 +19,18 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		Set<String> trainConsist = new LinkedHashSet<>();
+		Map<String,Integer> capacityMap = new HashMap<>();
 		
+		capacityMap.put("First Class", 24);
+		capacityMap.put("Cargo", 120);
+		capacityMap.put("Sleeper", 72);
+		capacityMap.put("AC Chair", 56);
 		
-		trainConsist.add("Engine");
-		trainConsist.add("Sleeper");
-		trainConsist.add("AC");
-		trainConsist.add("Cargo");
+		System.out.println("Bogie Capacity Details:");
 		
-		trainConsist.add("Engine");
-		
-		System.out.println("Initial Train Consist:\n" + trainConsist + "\n");
+		for(String key : capacityMap.keySet()) {
+			System.out.println(key + " -> " + capacityMap.get(key));
+		}
 		
 
 	}
