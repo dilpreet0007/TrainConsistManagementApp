@@ -5,12 +5,13 @@ import java.util.*;
 import com.bogie.Bogie;
 
 /*
- * UC6: Map Bogie to Capacity
- * 		Used HashMap to store name and capacity
- * 		Checking Consist
+ * UC7: Sort Bogies by Capacity (Comparator)
+ * 		Stored in class
+ * 		sorted using comparator
+ * 		sorted on basis of capacity
  * 
  * @author Dilpreet
- * @version 6.0
+ * @version 7.0
  */
 
 public class Main {
@@ -35,6 +36,7 @@ public class Main {
 		}
 		
 		Collections.sort(bogies, Comparator.comparingInt(bogie -> bogie.capacity));
+		
 		System.out.println();
 		System.out.println("After sorting:");
 
