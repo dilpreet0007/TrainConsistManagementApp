@@ -3,10 +3,13 @@ package com.main;
 import java.util.*;
 
 /*
- * UC2: Add Passenger Bogies to Train (ArrayList Operations)
- * 		Bogies added
- * 		Bogies removed
+ * UC3: Track Unique Bogie IDs (Set – HashSet)
+ * 		IDs added
+ * 		Tried to add duplicates
  * 		Its current consist is printed
+ * 
+ * @author Dilpreet
+ * @version 3.0
  */
 
 public class Main {
@@ -16,27 +19,19 @@ public class Main {
 		System.out.println(" Train Consist Management App ");
 		System.out.println("==============================");
 		
-		List<String> trainConsist = new ArrayList<>();
+		Set<String> trainConsist = new HashSet<>();
 		
-		trainConsist.add("Sleeper");
-		trainConsist.add("AC Chair");
-		trainConsist.add("First Class");
+		//Bogie IDs added in set
+		trainConsist.add("BG101");
+		trainConsist.add("BG102");
+		trainConsist.add("BG103");
+		trainConsist.add("BG104");
 		
-		System.out.println("After adding Bogies: ");
+		//try to add duplicates
+		trainConsist.add("BG101");
+		trainConsist.add("BG102");
+		
 		System.out.println("Passenger Bogies: " + trainConsist);
-		System.out.println();
-		
-		System.out.println("After removing AC Chair: ");
-		trainConsist.remove("AC Chair");
-		System.out.println("Passenger Bogies: " + trainConsist);
-		System.out.println();
-		
-		System.out.println("Checking if Sleeper exist?");
-		System.out.print("Contains Sleeper: ");
-		System.out.println(trainConsist.contains("Sleeper"));
-		System.out.println();
-		
-		System.out.println("Final Train Passenger Consist: " + trainConsist);
 
 	}
 
