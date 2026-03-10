@@ -1,16 +1,20 @@
 package com.main;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.bogie.Bogie;
 
 /*
- * UC10: Count Total Seats in Train (reduce)
- * 		 Sum of capacity using reduce in stream
+ * UC11: Validate Train ID & Cargo Codes (Regex)
+ * 		 Used TrainIDPattern and CargoIDPattern
+ * 		 Taking input and matches with pattern
+ * 		 Printing validation Result
  * 		 
  * @author Dilpreet
- * @version 10.0
+ * @version 11.0
  */
 
 public class Main {
@@ -21,25 +25,28 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		List<Bogie> bogies = new ArrayList<>();
-		
-		bogies.add(new Bogie("Sleeper",72));
-		bogies.add(new Bogie("AC Chair",56));
-		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("Sleeper",92));
-		bogies.add(new Bogie("AC Chair",66));
-		bogies.add(new Bogie("General",90));
-		
-		System.out.println("All Bogies:");
-		
-		for(Bogie b : bogies) {
-			System.out.println(b.name + " -> " + b.capacity);
-		}
-		
-		int totalCapacity = bogies.stream().map(bogie -> bogie.capacity).reduce(0, Integer::sum);
-		
-		System.out.println();
-		System.out.println("Total seating capacity of train: " + totalCapacity);
+		// Define regex patterns
+        String trainPattern = "TRN-\\d{4}";
+        String cargoPattern = "PET-[A-Z]{2}";
+
+        // Compile patterns
+        Pattern trainIdPattern = Pattern.compile(trainPattern);
+        Pattern cargoCodePattern = Pattern.compile(cargoPattern);
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Train ID (format TRN-1234): ");
+        String trainInput = sc.nextLine();
+        System.out.print("Enter Cargo Code (format PET-AB): ");
+        String cargoInput = sc.nextLine();
+        System.out.println();
+        
+        Matcher trainMatcher = trainIdPattern.matcher(trainInput);
+        Matcher cargoMatcher = cargoCodePattern.matcher(cargoInput);
+        
+        System.out.println("Validation Result: ");
+        System.out.println("Valid Train ID: " + trainMatcher.matches());
+        System.out.println("Valid Train ID: " + cargoMatcher.matches());
 
 
 	}
