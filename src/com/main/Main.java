@@ -3,13 +3,13 @@ package com.main;
 import java.util.*;
 
 /*
- * UC4: Maintain Ordered Bogie IDs
- * 		Used LinkedList to maintain order
- * 		add in particular position
- * 		used removeLast and removeFirst
+ * UC5: Preserve Insertion Order of Bogies
+ * 		Used LinkedHashSet to maintain order
+ * 		Avoid Duplicates
+ * 		Checking Consist
  * 
  * @author Dilpreet
- * @version 4.0
+ * @version 5.0
  */
 
 public class Main {
@@ -20,24 +20,17 @@ public class Main {
 		System.out.println("==============================");
 		System.out.println();
 		
-		List<String> trainConsist = new LinkedList<>();
+		Set<String> trainConsist = new LinkedHashSet<>();
 		
 		
 		trainConsist.add("Engine");
 		trainConsist.add("Sleeper");
 		trainConsist.add("AC");
 		trainConsist.add("Cargo");
-		trainConsist.add("Gaurd");
+		
+		trainConsist.add("Engine");
 		
 		System.out.println("Initial Train Consist:\n" + trainConsist + "\n");
-		
-		trainConsist.add(2, "Pantry Car");
-		System.out.println("Pantry Car is added at second position:\n" + trainConsist +"\n");
-		
-		trainConsist.removeFirst();
-		trainConsist.removeLast();
-		System.out.println("After Removing Fist And Last Bogie:\n" + trainConsist + "\n");
-		
 		
 
 	}
