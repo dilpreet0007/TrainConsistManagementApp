@@ -7,13 +7,17 @@ import com.bogie.Bogie;
 import com.bogie.CargoBogie;
 
 /*
- * UC14: Handle Invalid Bogie Capacity (Custom Exception)
- * 		 Capacity must be greater than zero
- * 		 if its less than zero display error
- * 		 Used custom Exceptions
+ * UC15: Safe Cargo Assignment Using try-catch-finally
+ * 		 User attempts to assign cargo to a goods bogie.
+		 System checks shape and cargo compatibility.
+		 If unsafe, an exception is thrown.
+		 Exception is caught in the catch block.
+		 An error message is displayed.
+		 finally block executes cleanup or logging.
+		 Program continues safely.
  * 		 
  * @author Dilpreet
- * @version 14.0
+ * @version 15.0
  */
 
 public class Main {
@@ -23,31 +27,18 @@ public class Main {
 		System.out.println(" Train Consist Management App ");
 		System.out.println("==============================");
 		System.out.println();
-		
-		//List<Bogie> bogies = new ArrayList<>();
 
-		try{
-//			Scanner sc = new Scanner(System.in);
-//			System.out.print("Enter Bogie Name: ");
-//			String name = sc.nextLine();
-//			System.out.print("Enter Capacity: ");
-//			int capacity = sc.nextInt();
-			
-			Bogie b1 = new Bogie("Sleeper",72);	
-			System.out.println("Created Bogie: " + b1.name + " -> " + b1.capacity);
-			
-			Bogie b2 = new Bogie("Sleeper",0);	
-			System.out.println("Created Bogie: " + b2.name + " -> " + b2.capacity);
-			
-		}catch(InvalidCapacityException e) {
-			System.out.println("Error: " + e.getMessage());
-		}
-		
-		
+		CargoBogie c1 = new CargoBogie("Cylindrical");	
+		c1.assignCargo("Petroleum");
+		System.out.println();
+
+		CargoBogie c2 = new CargoBogie("Rectanguler");	
+		c2.assignCargo("Petroleum");
+
 	}
 	
-	public static class InvalidCapacityException extends Exception{
-		public InvalidCapacityException(String message){
+	public static class CargoSafetyException extends RuntimeException{
+		public CargoSafetyException(String message){
 			super(message);
 		}
 	}
