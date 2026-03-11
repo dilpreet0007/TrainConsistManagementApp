@@ -4,16 +4,19 @@ import java.util.*;
 
 
 /*
- * UC18: Linear Search for Bogie ID (Array-Based Searching)
- * 		 User provides a list of bogie IDs.
+ * UC19: Binary Search for Bogie ID (Optimized Searching)
+ * 		 User provides sorted bogie IDs.
 		 User provides a search key.
-		 System traverses the array sequentially.
-		 Each element is compared with the search key.
-		 If match found, search stops.
+		 System initializes low and high indexes.
+		 System finds the middle index.
+		 Key is compared with middle value.
+		 Search range is halved.
+		 Steps repeat until found or exhausted.
 		 Result is displayed.
+		 Program continues.
  * 		 
  * @author Dilpreet
- * @version 18.0
+ * @version 19.0
  */
 
 public class Main {
@@ -32,7 +35,23 @@ public class Main {
 		String searchID = "BG103";
 		boolean found = false;
 		
-		for(String s : bogies) if(s.equals(searchID)) { found = true; break;}
+		int left = 0;
+        int right = bogies.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            int cmp = searchID.compareTo(bogies[mid]);
+
+            if (cmp == 0) {
+                found = true;
+                break;
+            } else if (cmp > 0) {
+                left = mid + 1; 
+            } else {
+                right = mid - 1; 
+            }
+        }
 		System.out.println();
 		
 		if(found) System.out.println("Bogie " + searchID + " found in train consist");
