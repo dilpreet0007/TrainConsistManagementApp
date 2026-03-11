@@ -1,4 +1,4 @@
-# 🚆 Train Consist Management App
+# Train Consist Management App
 
 A **console-based Java application** that simulates how railway systems manage a **train consist** — the ordered collection of bogies attached to a locomotive.
 
